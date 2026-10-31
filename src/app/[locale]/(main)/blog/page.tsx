@@ -1,15 +1,10 @@
 import type { Metadata } from 'next'
 
-import { notFound } from 'next/navigation'
 import { getLocale } from 'next-intl/server'
 
-import { FilteredPosts } from '@/components/filtered-posts'
-import { JsonLd } from '@/components/json-ld'
-import { PageHeader } from '@/components/page-header'
-import { getLatestPosts, getSite } from '@/lib/content'
-import { createJsonLdCollectionPage } from '@/lib/json-ld'
+import { BlogListPage } from '@/components/blog/blog-list-page'
+import { getSite } from '@/lib/content'
 import { createPageMetadata } from '@/lib/metadata'
-import { getLocalizedPath } from '@/utils/get-localized-path'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -30,38 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 async function Page() {
   const locale = await getLocale()
 
-  const page = getSite('blog', locale)
-  const url = getLocalizedPath('/blog', locale)
-
-  if (!page) notFound()
-
-  const { title, description } = page
-
-  const posts = getLatestPosts(locale)
-
-  const jsonLd = createJsonLdCollectionPage({
-    id: url,
-    title,
-    description,
-    url,
-    locale,
-    items: posts.map((post, index) => ({
-      '@type': 'BlogPosting' as const,
-      headline: post.title,
-      url: `${url}/${post.slug}`,
-      datePublished: post.date,
-      dateModified: post.lastModified,
-      position: index + 1,
-    })),
-  })
-
-  return (
-    <>
-      <JsonLd json={jsonLd} />
-      <PageHeader title={title} description={description} />
-      <FilteredPosts posts={posts} />
-    </>
-  )
+  return <BlogListPage locale={locale} page={1} />
 }
 
 export default Page

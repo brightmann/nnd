@@ -10,6 +10,7 @@ import { getTOC, rehypePlugins, remarkPlugins } from '@/mdx-plugins'
 type BaseDoc = {
   _meta: Meta
   content: string
+  date?: string | Date
 }
 
 async function transform<TDoc extends BaseDoc>(document: TDoc, context: CollectionContext) {
@@ -37,13 +38,25 @@ async function transform<TDoc extends BaseDoc>(document: TDoc, context: Collecti
     return new Date().toISOString()
   })
 
-  const date = await context.cache(`${fullPath}:date`, async () => {
+  const gitDate = await context.cache(`${fullPath}:date`, async () => {
     const { stdout } = await x('git', ['log', '--diff-filter=A', '--follow', `--format=%ai`, '--', fullPath])
     if (stdout) {
       return new Date(stdout.trim()).toISOString()
     }
     return new Date().toISOString()
   })
+
+  // A frontmatter date wins over the git date: the build's git history is
+  // shallow, so `git log` attributes every file to the same HEAD commit and
+  // all posts tie. Without an explicit date, posts fall back to that order.
+  const rawDate = document.date
+  let frontmatterTime = Number.NaN
+  if (rawDate instanceof Date) {
+    frontmatterTime = rawDate.getTime()
+  } else if (rawDate) {
+    frontmatterTime = new Date(rawDate).getTime()
+  }
+  const date = Number.isNaN(frontmatterTime) ? gitDate : new Date(frontmatterTime).toISOString()
 
   const opengraphSegments = [collectionName, path, 'image.png']
 
@@ -69,6 +82,7 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    date: z.union([z.string(), z.date()]).optional(),
     content: z.string(),
   }),
   transform,

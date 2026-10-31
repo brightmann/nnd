@@ -23,8 +23,6 @@ export function generateStaticParams(): Array<{ page: string; locale: string }> 
   return params
 }
 
-export const dynamicParams = false
-
 export async function generateMetadata(props: {
   params: Promise<{ locale: string; page: string }>
 }): Promise<Metadata> {

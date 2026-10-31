@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef } from 'react'
 
 import { BlurImage } from '@/components/blur-image'
-import { ImageZoom } from '@/components/image-zoom'
 import { Link } from '@/components/ui/link'
 import { MY_NAME } from '@/constants/site'
 import { useCountComment } from '@/hooks/queries/comment.query'
@@ -77,17 +76,6 @@ export function BlogHeader(props: BlogHeaderProps) {
           </div>
         </div>
       </div>
-      <ImageZoom>
-        <BlurImage
-          src={`/images/blog/${post.slug}/cover.png`}
-          className='rounded-lg'
-          width={1200}
-          height={630}
-          lazy={false}
-          fetchPriority='high'
-          alt={post.title}
-        />
-      </ImageZoom>
     </div>
   )
 }

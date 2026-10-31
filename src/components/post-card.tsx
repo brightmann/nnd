@@ -29,8 +29,6 @@ export function PostCard(props: PostCardProps) {
       key={post.slug}
       href={`/blog/${post.slug}`}
       title={t('homepage.latest-articles.card')}
-      image={`/images/blog/${post.slug}/cover.png`}
-      imageAlt={post.title}
       icon={<PencilIcon className='size-4.5' />}
       featured={featured}
     >

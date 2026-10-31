@@ -157,6 +157,11 @@
     "views": "{count, plural, =1 {# view} other {# views}}"
   },
   "components": {
+    "blog-pagination": {
+      "label": "Blog pagination",
+      "next": "Next",
+      "previous": "Previous"
+    },
     "filtered-posts": {
       "no-posts-found": "No posts found",
       "placeholder": "Search articles"

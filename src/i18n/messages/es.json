@@ -157,6 +157,11 @@
     "views": "{count, plural, =1 {# vista} other {# vistas}}"
   },
   "components": {
+    "blog-pagination": {
+      "label": "Paginación del blog",
+      "next": "Siguiente",
+      "previous": "Anterior"
+    },
     "filtered-posts": {
       "no-posts-found": "No se encontraron entradas",
       "placeholder": "Buscar artículos"

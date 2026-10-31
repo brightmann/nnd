@@ -157,6 +157,11 @@
     "views": "{count, plural, =1 {# 浏览次数} other {# 浏览次数}}"
   },
   "components": {
+    "blog-pagination": {
+      "label": "博客分页",
+      "next": "下一页",
+      "previous": "上一页"
+    },
     "filtered-posts": {
       "no-posts-found": "没有找到文章",
       "placeholder": "搜寻文章"

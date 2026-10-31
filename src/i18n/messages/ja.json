@@ -157,6 +157,11 @@
     "views": "{count, plural, =1 {# 回閲覧} other {# 回閲覧}}"
   },
   "components": {
+    "blog-pagination": {
+      "label": "ブログのページネーション",
+      "next": "次へ",
+      "previous": "前へ"
+    },
     "filtered-posts": {
       "no-posts-found": "投稿が見つかりませんでした",
       "placeholder": "記事を検索"

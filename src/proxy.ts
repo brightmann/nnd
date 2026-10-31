@@ -14,6 +14,7 @@ export function proxy(request: NextRequest) {
     style-src 'self' 'unsafe-inline' ${IS_PREVIEW ? 'https://vercel.live' : ''};
     img-src 'self' data: https://avatars.githubusercontent.com https://*.googleusercontent.com https://github.com https://images.unsplash.com ${ENV.CLOUDFLARE_R2_PUBLIC_URL} ${IS_PREVIEW ? 'https://vercel.live https://vercel.com blob:' : ''};
     font-src 'self' ${IS_PREVIEW ? 'https://vercel.live https://assets.vercel.com' : ''};
+    frame-src https://www.youtube.com https://www.youtube-nocookie.com;
     worker-src 'self' blob:;
     object-src 'none';
     base-uri 'none';

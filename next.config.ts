@@ -56,7 +56,7 @@ const config: NextConfig = {
     },
   },
 
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
 
   typescript: {
     ignoreBuildErrors: ENV.CI,

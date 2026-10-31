@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/configuration-schema.json",
+  "assets": { "binding": "ASSETS", "directory": "./.open-next/assets" },
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".open-next/worker.js",
+  "name": "nnd",
+  "vars": {
+    "BETTER_AUTH_SECRET": "placeholder-better-auth-secret-0123456789abcdef",
+    "DATABASE_URL": "postgres://postgres:postgres@localhost:5432/nelsonlaidev",
+    "IP_ADDRESS_SALT": "placeholder-ip-address-salt-0123456789abcdef",
+    "NEXT_PUBLIC_SITE_URL": "https://nnd.luckypoem.workers.dev",
+    "UPSTASH_REDIS_REST_TOKEN": "placeholder-upstash-token-0123456789abcdef",
+    "UPSTASH_REDIS_REST_URL": "https://localhost:8079",
+    "RESEND_FROM_EMAIL": "placeholder@example.com",
+  },
+}

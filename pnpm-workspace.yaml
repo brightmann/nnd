@@ -3,6 +3,7 @@ allowBuilds:
   '@swc/core': false
   esbuild: true
   lefthook: true
+  workerd: true
 
 engineStrict: true
 saveExact: true
